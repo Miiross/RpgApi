@@ -91,18 +91,18 @@ namespace RpgApi.Controllers
         }
 
         [HttpGet("GetByForca/{forca}")]
-        public IActionResult Get(Int forca)
+        public IActionResult Get(int forca)
         {
-            List<Personagem> listarFinal = personagens.FindAll(p -> p.Forca -- forca);
+            List<Personagem> listarFinal = personagens.FindAll(p => p.Forca == forca);
             return Ok(personagens);
         }
 
         [HttpPost]
-        public IActionResult AddPersonagem(Personagem novoPersonagem)
+        public IActionResult Addpersonagem(Personagem novoPersonagem)
         {
             if (novoPersonagem.Inteligencia == 0)
                 return BadRequest("Inteligencia não pode ter o valor igual a 0 (zero).");
-                
+
             personagens.Add(novoPersonagem);
             return Ok(personagens);
         }
