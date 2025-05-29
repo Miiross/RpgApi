@@ -155,7 +155,7 @@ namespace RpgApi.Controllers
             return Ok(listaBusca);
         }
 
-
+        
 
 
 

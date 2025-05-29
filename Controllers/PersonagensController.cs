@@ -266,6 +266,23 @@ namespace RpgApi.Controllers
             }
         }
 
+        [HttpGet("GetByUser")]
+        public async Task<IActionResult> GetByUserAsync()
+        {
+            try
+            {
+                int id = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+
+                List<Personagem> lista = await _context.TB_PERSONAGENS
+                            .Where(u => u.Usuario.Id == id).ToListAsync();
+                return Ok(lista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetByPerfil")]
         public async Task<IActionResult> GetByPerfilAsync()
         {
